@@ -78,6 +78,7 @@ const TodoItemBlock = styled.div<{done: boolean}>`
     padding-top: 10px;
     padding-bottom: 10px;
     border: 1px solid #e9ecef;
+    border-radius: 10px;
     margin-bottom: 5px;
 
     &:hover {
