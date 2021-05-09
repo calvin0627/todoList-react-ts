@@ -1,31 +1,28 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-
-const Rootdiv = styled.div`
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
+import TodoTemplate from './components/TodoTemplate';
+import TodoHead from './components/TodoHead';
+import TodoList from './components/TodoList';
+import TodoContainer from './components/TodoContainer';
 
 const GlobalStyle = createGlobalStyle`
     body{
         padding: 0;
         margin: 0;
+        background: #e9ecef;
     }
 `;
+
 
 function App() {
     return (
         <>
             <GlobalStyle/>
-            <Rootdiv>
-                
-            </Rootdiv>
+            <TodoTemplate>
+                <TodoContainer/>
+            </TodoTemplate>
         </>
-    )
+    );
 }
 
 export default App;
