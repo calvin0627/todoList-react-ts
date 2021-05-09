@@ -1,86 +1,99 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import TodoItemModel from '../models/TodoItemModel'
+import { MdDeleteForever, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
+import { AiTwotonePushpin, AiOutlinePushpin} from 'react-icons/ai';
 
-const TodoCheckBox = styled.div<{ done: boolean }>`
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
-  border: 1px solid #ced4da;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-  cursor: pointer;
-  ${props =>
-        props.done &&
-        css`
-        border: 1px solid #38d9a9;
-        color: #38d9a9;
-    `}
-`;
-
-const TodoPinBox = styled.div<{ pinned: boolean }>`
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    border: 1px solid #ced4da;
-    font-size: 24px;
+const TodoCheckBox = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    cursor: pointer;
-    ${props =>
-        props.pinned &&
-        css`
-        border: 1px solid #38d9a9;
-        color: #38d9a9;
-    `}
+    margin-left: 7px;
+
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    &:hover {
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
+`;
+
+const TodoPinBox = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    &:hover {
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
 `;
 
 const TodoTextBox = styled.div<{ done: boolean }>`
     flex: 1;
     font-size: 20px;
-    color: #495057;
     ${props =>
         props.done &&
         css`
-            color: #555555;
+            text-decoration: line-through;
         `}
 `;
 
 const TodoRemoveBox = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-    font: bold 16px solid;
-    cursor: pointer;
-    background: red;
-    overflow: visible;
-    /* display: none; */
-    /* overflow: visible;
-    position: relative;
-    float: right;
-    display: flex;
-    /* border: 0;
-    padding: 0; */
-    /* cursor: pointer;
-    /* height: 10%; */
+    margin-right: 10px;
+
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    &:hover {
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
 `;
 
-const TodoItemBlock = styled.div`
+const TodoItemBlock = styled.div<{done: boolean}>`
     display: flex;
     align-items: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #e9ecef;
+    margin-bottom: 5px;
+
     &:hover {
-        ${TodoRemoveBox} {
-            display: initial;
-        }
+        transform: scale(1.03);
+        -webkit-transform: scale(1.03);
+        -moz-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        -o-transform: scale(1.03);
     }
+
+    ${props =>
+        props.done &&
+        css`
+            text-decoration: line-through;
+            background: #EEE;
+        `}
 `;
 
 interface TodoItemProps {
@@ -108,11 +121,19 @@ function TodoItem(props: TodoItemProps): JSX.Element {
     }
 
     return (
-        <TodoItemBlock>
-            <TodoCheckBox onClick={toggleDone} done={done} />
-            <TodoPinBox onClick={pinning} pinned={pinned} />
-            <TodoTextBox done={done}>{text}</TodoTextBox>
-            <TodoRemoveBox onClick={removing}>remove</TodoRemoveBox>
+        <TodoItemBlock done={done}>
+            <TodoCheckBox onClick={toggleDone}>
+                {done ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+            </TodoCheckBox>
+            <TodoPinBox onClick={pinning}> 
+                {pinned ? <AiTwotonePushpin/> : <AiOutlinePushpin/>}
+            </TodoPinBox>
+            <TodoTextBox done={done}>
+                {text}
+            </TodoTextBox>
+            <TodoRemoveBox onClick={removing}>
+                <MdDeleteForever />
+            </TodoRemoveBox>
         </TodoItemBlock>
     )
 }

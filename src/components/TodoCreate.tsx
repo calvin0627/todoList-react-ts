@@ -36,6 +36,14 @@ const TodoCreateBlock = styled.div`
         text-transform: uppercase;
         background: #345678;
         border-radius: 0 3px 3px 0;
+
+        &:hover {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+    }
     }
 `;
 
