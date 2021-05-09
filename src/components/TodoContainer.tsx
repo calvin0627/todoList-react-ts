@@ -17,7 +17,7 @@ function TodoContainer() : JSX.Element {
             pinned: false,
             text: todoText
         };
-        setTodos((prevState) => [...prevState, todo]);
+        setTodos((prevState) => [todo, ...prevState]);
     };
     const removeTodo = (id: number) => {
         if (!todos) return;
